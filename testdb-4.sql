@@ -5,15 +5,17 @@ insert into products(prod_name)values('moulivakkam');
 select prod_name,decode (prod_name,'Porur','Chennai','Oor')as Decode from products;
 
 --temprory table and sub query cration for using alay as
---it will print h wherever the value will be chennai,and print n wherever the value is not chennai
-select * from(select prod_name,decode (prod_name,'Porur','H','N')as De from products)where De!='H';
+--it will print h wherever the value will be Pourur,and print n wherever the value is not chennai
+select * from(select prod_name,decode (prod_name,'Porur','yes','No')as De from products)where De!='yes';
+
+select * from(select prod_name as name,decode (prod_name,'Porur','yes','No')as De from products)where name='porur' and De='No';
 
 --print odd number of pro_id with certain condition use mod while using condition
 select * from products where mod(prod_id,2)!=0;
 
-select * from products where rownum<=3;
+select * from products where 3=3;
 
-select * from products where mod(rownum,2)<>0;
+select * from products where mod(cust_id,2)<>0;
 
 --while using any function we must use over and inside the over we need to use orderby must
 select prod_name,row_number() over(order by prod_name)as rown from products;
@@ -59,7 +61,24 @@ sale_name varchar(30),
 ent_dt TIMESTAMP default systimestamp
 );
 
+select * from costom11;
+
 grant select on costom11 to pokesh; //this is for give table access for that user table
 grant insert on costom11 to pokesh;
 grant update on costom11 to pokesh;
 grant delete on costom11 to pokesh;
+
+
+create user Malliga identified by malli;//this syntax is right but oracle is not allow this
+grant CREATE SESSION to Malliga;
+grant select on costom11 to Malliga; //this is for give table access for that user table
+grant insert on costom11 to Malliga;
+grant update on costom11 to Malliga;
+grant delete on costom11 to Malliga;
+
+create user Kalai identified by pokesh;
+grant create session to Kalai;
+grant select on products to Kalai;
+grant insert on products to Kalai;
+grant update on products to Kalai;
+grant delete on products to Kalai; 

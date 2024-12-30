@@ -51,11 +51,12 @@ CONSTRAINT pk_custId foreign key (cust_id) REFERENCES customers (cust_id)
 drop table customers;
 drop table products;
 
+
 insert into customers(cust_name,cust_add) values('dinesh','porur');
 --foringe key it will accept already the key has in privious value
 select * from customers;
 
-insert into products(prod_name,cust_id) values('good day',22);
+insert into products(prod_name,cust_id) values('hello',22);
 
 select * from products;
 
@@ -98,7 +99,7 @@ select prod_name as Product_Name,nvl(cust_name,'nothing here') as Customer_Name 
 
 
 --case 
-select case when p.prod_name='TVm'then p.prod_name else 'Pokesh' end 
+select case when p.prod_name='oreo' then p.prod_name else 'Pokesh' end 
 as Product_Name,cust_name as Customer_Name from products p left join customers c ON p.cust_id=c.cust_id; 
 
 --we can check any values in case  = < > !=
@@ -106,12 +107,13 @@ select case when c.cust_add is not null then c.cust_add else 'no addrress' end
 as Product_Address,nvl(c.cust_add,'nothing here') as Customer_Adrress from products p left join customers c ON p.cust_id=c.cust_id; 
 
 select * from products;
+select * from customers;
 
 --whild card(if you want to fetch some specific value but u forgot the full name of the value so u can get it by any two or three letter from that table data
 select * from products where prod_name like 'C%';//it will show the all value of s starting valus(when we use % after the value)
 select * from products where prod_name like '%i';//it will show the value of s ending valus(when we use % before the value)
 select * from products where prod_name like '%p%';//it will show the value of s starting and ending valus(when we use %s% the value)
-select * from products where prod_name like 'C%i';
+select * from products where prod_name like 'h%o';
 
 --__it will show the value u want to print here if you forgot the middle value u can use _ _ _ as many u want based on how much letter to be printed
 select * from products where prod_name like 'La___p';

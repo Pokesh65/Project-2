@@ -4,7 +4,7 @@ select * from user_tables where HAS_IDENTITY='YES';
 
 select * from products;
 select * from products where rownum<=5;
-insert into products(prod_name,cust_id) values('Phone',4);
+insert into products(prod_name,cust_id) values('Phone',3);
 
 --rank methods it's function so i give parantheses()
 select prod_name,rank() over( order by prod_name desc) as Prod_rank from products; //it will print all rank value 
@@ -16,14 +16,13 @@ select distinct(prod_name),dense_rank() over( order by prod_name desc) as Prod_r
 select distinct(prod_name),dense_rank() over( order by prod_name desc) as Prod_rank from products;//distinct remove all dublicates values
 
 --rank and dense_rank is an analitical functions
-
-select distinct(prod_name),dense_rank() over( order by prod_name desc) as Prod_rank from products  where rownum<=15;
+select distinct(prod_name),dense_rank() over( order by prod_name desc) as Prod_rank from products  where rownum<=2;
 select distinct(prod_name) from products  where rownum<=10; //the rownum whill check the rownum value from default table values here
 select (prod_name),dense_rank() over(order by prod_name) from products  where rownum<=10;
 
 --group by 
 --group by only used with aggrigate function like maths counts sum 
-select count(prod_name) as Count_Of_Name,prod_name from products GROUP by prod_name;
+select count(prod_name) as Count_Of_Name, prod_name from products group by prod_name;
 --the group by is with some particular senario we find the members count in particular table that is group by
 select count(prod_name) as Count_Of_Name,prod_name,prod_id from products GROUP by prod_name,prod_id;
 
@@ -52,6 +51,7 @@ select * from v_pd;
 create or replace view subject as select * from marksheet where subject='computer science';
 select * from subject;
 
+select std_name from subject;
 select * from marksheet;
 
 --to set two table value into one table here
@@ -66,11 +66,15 @@ desc product2;
 select * from product2;
 select * from products;
 
+
+
 drop table product2;
 
 
 --it will copy all the value into each table u can add all value to each table with this query
 insert into product2(prod_name) select prod_name from products;
+
+
 select * from product2;
 
 insert into product2(prod_name) select prod_name from products where prod_name='Phone';
@@ -100,15 +104,14 @@ select  nvl(cust_id ,'10') as NVL ,coalesce(null,null,cust_id) as coalesce from 
 --nvl2 will print the 2nd value if the 1st value is not null, if the 1st value is null then it will print the 3rd value
 select nvl2(null,'Hello','Hii') as result from dual;
 
---if both are same it will return a null value
-select nullif('Pokesh','Dinesh')as NullIf from dual;
+--if both are same it will return a null value else print first value
+select nullif('Dinesh','Dinesh')as NullIf from dual;
 
 --it will find out the first not null expresion here if any not null value is find by the coalesce function it will return the not null function
 select cust_id,coalesce(null,cust_id,null,null,null)from products;//but coalesce is accept many parameter
 
 
 commit;
-
 
 
 

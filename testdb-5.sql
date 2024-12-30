@@ -13,6 +13,7 @@ age int
 
 --Create table that copy of another table
 create table copydata as select * from products;
+
 TRUNCATE table copy1;
 drop TABLE copy1;
 drop TABLE copy2;
@@ -27,6 +28,7 @@ insert into copy2(prod_name,age) values('Kumar',23);
 --insert all data to one table from another table
 --Insert All Value To copydata from products  
 insert into copydata(prod_id,prod_name) select prod_id,prod_name from products;
+insert into copydata select * from products;
 select * from copydata;
 
 drop table copydata;
@@ -46,19 +48,20 @@ update copydata set prod_name='Pokesh' where 1=1;
 
 
 --it will delete all data from where cust_id is not null
-delete from copydata where cust_id is not null;
+delete from copydata where cust_id is  null;
  
 select * from products;
  
 --UNION (won’t duplicate with same column data values from 2 diff table)
 select * from copy1 union select * from copy2;
-
+select * from copy1;
+select * from copy2;
 --UNION ALL (accept duplicate with same column data values from 2 diff table)
 select * from copy1 union all select * from copy2;
 
 --Group by ,Order ,Join
 --Group by
---Group comes in the mind when we need to get count value by One Specific(sum,count,average,round)
+--Group by comes in the mind when we need to get count value by One Specific(sum,count,average,round)
 --we use having in group by
 
 --Order By
@@ -77,6 +80,12 @@ select power(8,2) from dual;
 
 with w as(
 select prod_name as Pname from copydata
-)select * from w where w.Pname='Pokesh'; 
+)select * from w where w.Pname='Usa'; 
+
+select * from copydata where prod_name='Russia';
+
+with N as(select * from copydata where prod_name='Russia')select * from N where N.ENT_DT is null;
+
+
 
 commit;

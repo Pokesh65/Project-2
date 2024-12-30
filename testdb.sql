@@ -27,6 +27,7 @@ alter TABLE employees add emp_address VARCHAR(200);
 alter table employees add Position VARCHAR(100);
 alter table employees MODIFY Position int;
 
+desc employees;
 
 --drop coloum here
 alter table employees drop(Position); 
@@ -53,7 +54,7 @@ desc employees;
 
 
 --DML Changes in SQL
-INSERT into employees(emp_name,emp_address,emp_phone) values('gokul','madhuravayal',98666);
+INSERT into employees(emp_name,emp_address,emp_phone) values('gokul','madhuravayal',928283);
 
 select * from employees;
 
@@ -68,7 +69,7 @@ select distinct (emp_name),id from employees;
 select distinct (emp_name) from employees;
 
 --you can set maltipule value by using the , where
-update employees set emp_phone=6383532388,emp_name='Dinesh Values' where id=2;
+update employees set emp_phone=6383532388,emp_name='Dinesh Values' where id=3;
  
 -- the and operator need to satisfied two condition to show values
 select * from employees where id=4 and emp_name='Mano';
@@ -76,17 +77,19 @@ select * from employees where id=4 and emp_name='Mano';
 -- the or operator need to satisfied any one condition to show values
 select * from employees where emp_name='Pokesh' or emp_name='Mano';
 
+select * from employees where emp_name in('Pokesh','Mano');
+
 select * from employees where mod(id,2)!=0;
 
 -- the and operator need to satisfied any one condition to show values
 select * from employees where id=3 or emp_name='mano';
  
-update employees set emp_phone=6383532388,emp_name='Pokesh Kumar',emp_address='chennai-mowlivakkam',mod_dt=systimestamp where id=5;
+update employees set emp_phone=6383532388,emp_name='Pokesh Kumar',emp_address='chennai-mowlivakkam',mod_dt=systimestamp where id=25;
 
 select * from employees;
 
 
-DELETE employees where id=7;
+DELETE employees where id=24;
 
 delete employees where id=7;
 
